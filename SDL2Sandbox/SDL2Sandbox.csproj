@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net8.0</TargetFramework>
+        <RootNamespace>SDL2_Test</RootNamespace>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\SDL2-CS\SDL2-CS.csproj" />
+    </ItemGroup>
+    
+    <Target Name="Copy SDL2" AfterTargets="Build">
+        <Copy SourceFiles="$(ProjectDir)lib\libSDL2-2.0.0.dylib" DestinationFiles="$(TargetDir)libSDL2.dylib" />
+    </Target>
+    
+
+</Project>

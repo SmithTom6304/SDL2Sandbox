@@ -1,0 +1,52 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Platforms>AnyCPU</Platforms>
+  </PropertyGroup>
+  <PropertyGroup>
+    <EnableDefaultItems>false</EnableDefaultItems>
+    <AssemblyName>SDL2-CS</AssemblyName>
+    <RootNamespace>SDL2</RootNamespace>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <RunAnalyzersDuringBuild>False</RunAnalyzersDuringBuild>
+    <RunAnalyzersDuringLiveAnalysis>False</RunAnalyzersDuringLiveAnalysis>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(TargetFramework)' != 'net40' And '$(TargetFramework)' != 'netstandard2.0' ">
+    <IsTrimmable>true</IsTrimmable>
+    <EnableAOTAnalyzer>true</EnableAOTAnalyzer>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SDLSettingsPropsFilePath>$(SolutionDir)SDL2-CS.Settings.props</SDLSettingsPropsFilePath>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineConstants></DefineConstants>
+    <WarningLevel>4</WarningLevel>
+    <AssemblyName>SDL2-CS.Core</AssemblyName>
+    <NoWarn></NoWarn>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <LangVersion>Default</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <LangVersion>Default</LangVersion>
+  </PropertyGroup>
+  <Import Project="$(SDLSettingsPropsFilePath)" Condition="Exists('$(SDLSettingsPropsFilePath)')" />
+  <Target Name="ValidatePropsFilePath" BeforeTargets="BeforeBuild">
+    <Message Importance="High" Text="No property overrides found at '$(SDLSettingsPropsFilePath)'" Condition="!Exists('$(SDLSettingsPropsFilePath)')" />
+    <Message Importance="High" Text="Loaded property overrides from '$(SDLSettingsPropsFilePath)'" Condition="Exists('$(SDLSettingsPropsFilePath)')" />
+  </Target>
+  <ItemGroup>
+    <Compile Include="src\SDL2.cs" />
+    <Compile Include="src\SDL2_gfx.cs" />
+    <Compile Include="src\SDL2_image.cs" />
+    <Compile Include="src\SDL2_mixer.cs" />
+    <Compile Include="src\SDL2_ttf.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+</Project>
