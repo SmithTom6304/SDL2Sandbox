@@ -14,6 +14,7 @@
     
     <Target Name="Copy SDL2" AfterTargets="Build">
         <Copy SourceFiles="$(ProjectDir)lib\libSDL2-2.0.0.dylib" DestinationFiles="$(TargetDir)libSDL2.dylib" />
+        <Copy SourceFiles="$(ProjectDir)lib\SDL2.dll" DestinationFiles="$(TargetDir)SDL2.dll" />
     </Target>
     
 
